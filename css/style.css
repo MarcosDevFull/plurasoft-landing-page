@@ -585,6 +585,7 @@ section {
 
 
 /* Section 6: Orion Agenda */
+
 #titulo-agenda{
    text-align: left;
 }
@@ -596,7 +597,7 @@ section {
     color: #1ddafd;
 }
 #diferenciais{
-    margin-top: 50px;
+    margin-top: 30px;
 }
 .agenda-grid {
     display: grid;
@@ -608,8 +609,9 @@ section {
 .agenda-grid img {
     max-width: 700%;
     height: auto;
-    margin-left: 200px;
+    margin-left: 150px;
     animation: floating 2s ease-in-out infinite;
+    
 
        
 }
