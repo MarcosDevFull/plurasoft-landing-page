@@ -1,0 +1,1026 @@
+:root {
+    --green: #06F8ab;
+    --blue: #1ddafd;
+    --black: #000000;
+    --white: #ffffff;
+    --light-gray: #f0f0e4;
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html {
+    scroll-behavior: smooth;
+}
+body {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--black);
+    background-color: var(--white);
+}
+a {
+    color: var(--blue);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+a:hover {
+    color: var(--green);
+}
+
+/* Estilo do ícone do WhatsApp flutuante */
+.whatsapp-float {
+    position: fixed; /* Permite que o ícone fique fixo na tela */
+    bottom: 20px; /* Distância da parte inferior */
+    right: 20px; /* Distância da lateral direita */
+    z-index: 1000; /* Garante que ele fique acima de outros elementos */
+    width: 60px; /* Largura do ícone */
+    height: 60px; /* Altura do ícone */
+    border-radius: 50%; /* Deixa o fundo redondo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Efeito suave ao passar o mouse */
+     background-image: linear-gradient(to right, var(--green), var(--blue)); /* Cor verde clássica do WhatsApp */
+    animation: floating 1s ease-in-out infinite;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1); /* Efeito de zoom ao passar o mouse */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Sombra mais pronunciada */
+}
+
+.whatsapp-float i {
+    font-size: 28px; /* Tamanho do ícone do WhatsApp */
+    color: white; /* Cor do ícone (branco) */
+}
+/* Animações com JS */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.animate-on-scroll img {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.animate-on-scroll.is-visible img {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Hero Section com Vídeo */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+    padding-top: 70px;
+}
+.hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
+    transform: translateX(-50%) translateY(-50%);
+    background-size: cover;
+}
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 0;
+}
+.hero-content {
+    position: relative;
+    z-index: 1;
+    color: var(--white);
+    max-width: 900px;
+    padding: 0 1rem;
+}
+.hero-content h1 {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+.hero-content h1 span {
+    color: var(--blue);
+}
+.hero-content p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 1rem;
+}
+.scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: pulse-scroll 2s infinite;
+    color: var(--white);
+}
+@keyframes pulse-scroll {
+    0%, 100% { transform: translateY(0) scale(1); opacity: 1; }
+    50% { transform: translateY(10px) scale(0.9); opacity: 0.5; }
+}
+
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    color: var(--white);
+}
+
+/* ----- Regras para o Menu Inteligente ----- */
+.transparent-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    z-index: 100;
+    padding: 0.5rem 0;
+    transition: background-color 0.3s ease, padding 0.3s ease, transform 0.3s ease;
+}
+.transparent-nav.scrolled {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 0.5rem 0;
+}
+.transparent-nav.hidden {
+    transform: translateY(-100%);
+}
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo-container {
+    position: static;
+    margin: 0;
+    padding: 0;
+}
+.logo {
+    width: 250px;
+    height: auto;
+    filter: brightness(0) invert(1);
+    transition: filter 0.3s ease;
+}
+.transparent-nav.scrolled .logo {
+    filter: brightness(0) invert(1);
+}
+.logo:hover {
+    filter: none;
+}
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+.nav-links li a {
+    color: var(--white);
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-family: 'Open Sans', sans-serif;
+}
+.nav-links li a:hover {
+    color: var(--green);
+}
+
+section {
+    padding: 5rem 1rem;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.section-title {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+.section-subtitle {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #555;
+}
+
+/* Section 2: Missão, Visão e Valores */
+.missao-valores-section {
+    background-color: var(--light-gray);
+    text-align: left;
+    padding: 5rem 1rem;
+    border-radius: 0px 0px 20px 0px;
+}
+.missao-valores-section .section-title {
+    margin-bottom: 1rem;
+    text-align: left;
+}
+.missao-valores-section .section-subtitle {
+    margin-bottom: 4rem;
+    text-align: left;
+}
+.missao-valores-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    text-align: center;
+}
+.missao-valores-grid .card {
+    background-color: #06ccf824;
+    padding: 2rem;
+    border-radius: 0px 30px 0px 0px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid transparent;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+}
+.missao-valores-grid .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 16px 28px rgba(0, 0, 0, 0.15);
+    border-color: var(--blue);
+    background-color: #ffffff;
+    color:var(--blue);
+}
+.missao-valores-grid .card i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--blue);
+}
+.missao-valores-grid .card h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--black);
+    margin-bottom: 0.5rem;
+}
+.missao-valores-grid .card h3:hover {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--blue);
+    margin-bottom: 0.5rem;
+}
+.missao-valores-grid .card p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.5;
+    flex-grow: 1;
+}
+
+/* --- Estilos para a Seção de Dashboard Tecnológico --- */
+
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 4rem;
+}
+
+.dashboard-card {
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e0e0e0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Mantém o espaço entre os elementos */
+    align-items: center; /* Centraliza os itens horizontalmente no card */
+    text-align: center; /* Centraliza o texto padrão */
+    height: 350px;
+    box-sizing: border-box; /* Garante que padding e border sejam incluídos na altura */
+}
+
+.dashboard-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+.dashboard-card .card-header {
+    margin-bottom: 1rem;
+    width: 100%; /* Ocupa toda a largura para melhor alinhamento se necessário */
+}
+
+.dashboard-card .card-icon {
+    font-size: 2.5rem;
+    color: var(--blue);
+    margin-bottom: 0.5rem;
+}
+
+.dashboard-card .card-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--blue);
+}
+
+.dashboard-card .card-text {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.5;
+    flex-grow: 1;
+    margin-bottom: 1.5rem;
+    text-align: left; /* Alinha o texto descritivo à esquerda */
+}
+
+.dashboard-card .card-data-point {
+    background-color: var(--blue);
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* Removido width: 100% e max-width: 200px */
+    margin-top: auto; /* Empurra para baixo se houver espaço extra */
+    margin-bottom: 0; /* Garante que não haja margem inferior extra */
+}
+
+.dashboard-card .data-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--white);
+    margin-bottom: 0.25rem;
+}
+
+.dashboard-card .data-label {
+    font-size: 0.85rem;
+    color: var(--white);
+    font-weight: 600;
+    text-align: center; /* Mantém o rótulo centralizado */
+}
+
+/* Classes para alinhamento de texto na seção */
+.section-title {
+    text-align: left !important; /* Força o alinhamento à esquerda */
+}
+
+.section-subtitle {
+    text-align: left !important; /* Força o alinhamento à esquerda */
+    max-width: 100%; /* Permite que o subtítulo ocupe a largura disponível para alinhamento */
+}
+/* --- Estilos para a Seção Equipe (Carrossel) --- */
+/* Container principal que envolve o carrossel e os botões */
+.team-section {
+    background-color:#1ddbfd45;
+    border-radius: 0px 50px 0px 0px;
+}
+
+/* Estilos da Seção Equipe - Ajustes para Carrossel */
+#titulo-equipe{
+    margin-left: 380px;
+}
+.team-carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 4rem auto;
+    overflow: hidden;
+    padding: 0 20px;
+   
+}
+.team-carousel-wrapper {
+    display: flex;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    gap: 1.5rem;
+    padding-bottom: 15px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.team-carousel-wrapper::-webkit-scrollbar {
+    display: none;
+}
+.team-profile {
+    min-width: calc(33.333% - 1rem);
+    max-width: calc(33.333% - 1rem);
+    flex-shrink: 0;
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 380px;
+}
+.team-profile:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+}
+.team-profile img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--blue);
+    margin-bottom: 1rem;
+    box-shadow: 0 0 10px rgba(29, 169, 250, 0.123);
+}
+.team-profile h3 {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 0.5rem;
+}
+.team-profile p.cargo {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--blue);
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+.team-profile p.quote {
+    font-family: 'Open Sans', sans-serif;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.5;
+    flex-grow: 1;
+    text-align: center;
+}
+.carousel-nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    color: var(--blue);
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.carousel-nav-button:hover {
+    background-color: var(--blue);
+    color: var(--white);
+}
+.carousel-nav-button.prev {
+    left: 10px;
+}
+.carousel-nav-button.next {
+    right: 20px;
+}
+@media (max-width: 992px) {
+    .team-profile {
+        min-width: calc(50% - 1rem);
+        max-width: calc(50% - 1rem);
+    }
+}
+@media (max-width: 768px) {
+    .team-carousel-container {
+        padding: 0 10px;
+    }
+    .carousel-nav-button {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+    .carousel-nav-button.prev {
+        left: 5px;
+    }
+    .carousel-nav-button.next {
+        right: 5px;
+    }
+    .team-profile {
+        min-width: 250px;
+        max-width: 250px;
+    }
+    .team-profile img {
+        width: 120px;
+        height: 120px;
+    }
+    .team-profile h3 {
+        font-size: 1.4rem;
+    }
+}
+.team-carousel-container .team-carousel-wrapper {
+    width: fit-content;
+    
+}
+.team-profile.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.team-profile:not(.is-visible) {
+    opacity: 0;
+    transform: translateY(20px);
+}
+/* Section 5: Orion Mascot */
+.orion-mascot-section {
+    background-color:var(--blue);
+    color: var(--black);
+    border-radius: 0px 0px 500px 300px;
+
+}
+.orion-mascot-section h2 {
+    color:var(--black);
+    text-align: left;
+    font-size: 35px;
+}
+.orion-mascot-section .section-subtitle, .orion-mascot-section p {
+    color:var(--black);
+    text-align: left;
+}
+.orion-image-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem auto;
+    max-width: 600px;
+   
+}
+.orion-mascot {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    animation: floating 1s ease-in-out infinite;
+}
+@keyframes floating {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+.orion-text-content {
+    text-align: left;
+}
+
+
+/* Section 6: Orion Agenda */
+#titulo-agenda{
+   text-align: left;
+}
+#subtexto-agenda{
+    text-align: left;
+}
+.textoh2orion{
+    text-align: left;
+    color: #1ddafd;
+}
+#diferenciais{
+    margin-top: 50px;
+}
+.agenda-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4rem;
+    align-items: center;
+
+}
+.agenda-grid img {
+    max-width: 700%;
+    height: auto;
+    margin-left: 200px;
+    animation: floating 2s ease-in-out infinite;
+
+       
+}
+.agenda-grid ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 10px;
+}
+.agenda-grid ul li {
+    margin-bottom: 0.75rem;
+    padding-left: 1.5em;
+    position: relative;
+}
+.agenda-grid ul li::before {
+    content: "\f00c";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: var(--blue);
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 1.2em;
+}
+.agenda-stats {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    margin-top: 2rem;
+}
+.agenda-stats .stat-item {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--blue);
+}
+.agenda-stats .stat-item small {
+    font-size: 1rem;
+    font-weight: 400;
+    display: block;
+    color: #555;
+}
+.cta-button {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    color: var(--black);
+    font-weight: bold;
+    text-decoration: none;
+    background-image: linear-gradient(to right, var(--green), var(--blue));
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-top:10rem;
+}
+
+/* Estilos para a seção do carrossel */
+#titulo-slide{
+    margin-left: 500px;
+
+}
+
+#subtitulo-slide{
+   margin-left: 410px; 
+}
+.carousel-container {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    max-width: 900px; /* Ajuste conforme a largura desejada para o carrossel */
+}
+
+.carousel-wrapper {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    cursor: grab; /* Indica que o elemento é arrastável */
+}
+
+.carousel-slide {
+    min-width: 100%; /* Cada slide ocupa 100% da largura do container */
+    flex-shrink: 0; /* Evita que os slides encolham */
+    box-sizing: border-box;
+    display: flex; /* Para centralizar a imagem dentro do slide, se necessário */
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-slide img {
+    display: block; /* Remove espaço extra abaixo da imagem */
+    width: 100%; /* Faz a imagem preencher a largura do slide */
+    height: auto; /* Mantém a proporção da imagem */
+    max-height: 450px; /* Defina uma altura máxima para manter a consistência */
+    object-fit: cover; /* Garante que a imagem cubra a área, cortando se necessário */
+    border-radius: 8px; /* Opcional: bordas arredondadas para as imagens */
+}
+
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: var(--white);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: background-color 0.3s ease;
+}
+
+.carousel-control.prev {
+    left: 15px;
+}
+
+.carousel-control.next {
+    right: 15px;
+}
+
+.carousel-control:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Adaptações para mobile e telas menores */
+@media (max-width: 768px) {
+    .carousel-control {
+        width: 35px;
+        height: 35px;
+        font-size: 1.2rem;
+    }
+    .carousel-container {
+        max-width: 100%; /* Ocupa toda a largura em telas menores */
+    }
+    .carousel-slide img {
+        max-height: 300px; /* Altura menor em telas menores */
+    }
+}
+/*formulario*/
+/* --- Estilos para a Seção de Formulário de Contato --- */
+#contato-titulo{
+    margin-left: 600px;
+    margin-bottom: 50px;
+}
+.contact-form-container {
+    background-color: #1ddbfd1e;
+    padding: 3rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.contact-form-container h2 {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--blue);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.contact-form-container .section-subtitle {
+    font-size: 1.1rem;
+    color: #555;
+    text-align: center;
+    margin-bottom: 2rem; /* Espaço antes do formulário */
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: var(--black);
+    font-size: 0.95rem;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group textarea {
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: var(--black);
+    background-color: var(--white);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(29, 170, 250, 0.2);
+}
+
+.form-group textarea {
+    resize: vertical; /* Permite redimensionar apenas na vertical */
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1; /* Faz com que o textarea ocupe toda a largura */
+}
+
+.form-actions {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.form-actions .cta-button {
+    background-image: linear-gradient(to right, var(--green), var(--blue));
+    color: var(--black);
+    padding: 1rem 3rem;
+    font-size: 1.1rem;
+    border-radius: 50px;
+}
+
+.form-actions .cta-button:hover {
+    color: var(--white);
+}
+
+/* Responsividade para o formulário */
+@media (max-width: 768px) {
+    .contact-form-container {
+        padding: 2rem;
+    }
+    .form-grid {
+        grid-template-columns: 1fr; /* Campos em coluna em telas menores */
+    }
+    .form-group.full-width {
+        grid-column: auto; /* Remove a regra de coluna única */
+    }
+}
+
+/* Footer */
+/* --- Estilos para o Footer --- */
+footer {
+    background-color: var(--black); /* Fundo preto conforme a imagem */
+    color: var(--white); /* Texto branco */
+    padding: 3rem 1rem; /* Padding superior/inferior e nas laterais */
+    font-family: 'Open Sans', sans-serif;
+    border-top: 2px solid var(--blue); /* Adiciona uma borda sutil no topo */
+    border-radius: 30px 30px 0px 0px;
+}
+
+.footer-top-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Cria 3 colunas que se ajustam */
+    gap: 2rem; /* Espaço entre as colunas */
+    margin-bottom: 2rem; /* Espaço antes da linha de direitos autorais */
+    padding-bottom: 2rem; /* Padding interno na parte superior */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Linha separadora sutil */
+}
+
+.footer-logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinha o logo e o texto à esquerda */
+}
+
+.footer-logo-img {
+    width: 250px; /* Ajuste o tamanho do logo conforme necessário */
+    height: auto;
+    margin-bottom: 1rem;
+    filter: brightness(0) invert(1); /* Deixa o logo branco, se ele for escuro */
+    /* Se o seu logo já for branco ou tiver transparência, você pode remover o filter */
+}
+
+.footer-logo-container p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7); /* Texto um pouco mais suave */
+    line-height: 1.5;
+    max-width: 300px; /* Limita a largura do parágrafo */
+}
+
+.footer-links-section h3,
+.footer-social-section h3 {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.5px;
+}
+
+.footer-links-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links-section li {
+    margin-bottom: 0.75rem;
+}
+
+.footer-links-section a {
+    color: var(--white);
+    font-size: 1rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+    position: relative;
+    display: inline-block; /* Para aplicar o hover effect */
+    padding-bottom: 3px; /* Espaço para a linha */
+}
+
+.footer-links-section a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--green); /* Cor da linha de hover */
+    transition: width 0.3s ease;
+}
+
+.footer-links-section a:hover {
+    color: var(--green);
+    transform: translateX(5px);
+}
+
+.footer-links-section a:hover::after {
+    width: 100%;
+}
+
+
+.social-icons a {
+    display: inline-block;
+    margin-right: 1rem;
+    color: var(--white);
+    font-size: 1.5rem; /* Tamanho dos ícones */
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: var(--green); /* Cor dos ícones no hover */
+    transform: scale(1.1);
+}
+
+.footer-bottom {
+    text-align: center;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    padding-top: 2rem; /* Espaço acima do texto do rodapé */
+}
+
+.footer-bottom p {
+    margin-bottom: 0.5rem;
+}
+
+.footer-bottom p:last-child {
+    margin-bottom: 0;
+}
+
+/* Responsividade para o Footer */
+@media (max-width: 768px) {
+    .footer-top-grid {
+        grid-template-columns: 1fr; /* Em telas menores, tudo fica em uma coluna */
+        text-align: center;
+        align-items: center; /* Centraliza o conteúdo verticalmente */
+    }
+    .footer-logo-container,
+    .footer-links-section,
+    .footer-social-section {
+        align-items: center; /* Centraliza o conteúdo das colunas */
+        text-align: center;
+    }
+    .footer-logo-img {
+        margin-left: auto;
+        margin-right: auto;
+        display: block; /* Garante que o logo centralize se estiver em flex */
+    }
+    .footer-links-section a {
+        transform: none; /* Remove o efeito de translateX no hover em telas menores */
+    }
+    .footer-links-section a:hover {
+        transform: none;
+    }
+    .social-icons a {
+        margin-right: 0.75rem; /* Ajuste o espaçamento dos ícones */
+    }
+}
+/* Responsividade */
+@media (max-width: 768px) {
+    .hero-content h1 { font-size: 2.5rem; }
+    .hero-content p { font-size: 1rem; }
+    .missao-valores-grid, .agenda-grid {
+        grid-template-columns: 1fr;
+    }
+    .missao-valores-grid .card {
+        height: auto;
+    }
+    .section-title { font-size: 2rem; }
+    .section-subtitle { font-size: 1rem; }
+    .agenda-grid img { margin-top: 2rem; }
+    .agenda-stats { flex-wrap: wrap; justify-content: center; gap: 1rem; }
+    .agenda-stats .stat-item { font-size: 2rem; }
+    .agenda-stats .stat-item small { font-size: 0.9rem; }
+    .nav-links { gap: 1rem; }
+}
+@media (max-width: 480px) {
+    .logo { width: 150px; }
+}
