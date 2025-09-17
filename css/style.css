@@ -656,13 +656,13 @@ section {
     display: inline-block;
     padding: 1rem 2.5rem;
     border-radius: 50px;
-    color: var(--black);
+    color: var(--white);
     font-weight: bold;
     text-decoration: none;
     background-image: linear-gradient(to right, var(--green), var(--blue));
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    margin-top:10rem;
+    margin-top: 10rem;
 }
 
 /* Estilos para a seção do carrossel */
